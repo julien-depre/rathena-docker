@@ -39,7 +39,7 @@ COPY --from=build --chown=rathena:rathena /src/rathena/db/import /rathena/db/imp
 # ---- Final Stage - Login Server ----
 FROM runtime AS login-server
 COPY --from=build --chown=rathena:rathena /src/rathena/login-server /rathena/login-server
-EXPOSE 6900 6121 5121 8888
+EXPOSE 6900
 ENV MODE=login
 ENTRYPOINT ["/entrypoint.sh"]
 
@@ -47,7 +47,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 # ---- Final Stage - Char Server ----
 FROM runtime AS char-server
 COPY --from=build --chown=rathena:rathena /src/rathena/char-server  /rathena/char-server
-EXPOSE 6900 6121 5121 8888
+EXPOSE 6121
 ENV MODE=char
 ENTRYPOINT ["/entrypoint.sh"]
 
@@ -55,7 +55,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 # ---- Final Stage - Map Server ----
 FROM runtime AS map-server
 COPY --from=build --chown=rathena:rathena /src/rathena/map-server   /rathena/map-server
-EXPOSE 6900 6121 5121 8888
+EXPOSE 5121
 ENV MODE=map
 ENTRYPOINT ["/entrypoint.sh"]
 
@@ -63,7 +63,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 # ---- Final Stage - Web Server ----
 FROM runtime AS web-server
 COPY --from=build --chown=rathena:rathena /src/rathena/web-server   /rathena/web-server
-EXPOSE 6900 6121 5121 8888
+EXPOSE 8888
 ENV MODE=web
 ENTRYPOINT ["/entrypoint.sh"]
 
