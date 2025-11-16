@@ -16,10 +16,10 @@ RUN apk add --no-cache wget cmake make gcc g++ gdb zlib-dev mariadb-dev ca-certi
 COPY --from=git-clone /src/rathena /src/rathena
 
 WORKDIR /src/rathena
-RUN ./configure --enable-packetver=${RATHENA_PACKETVER} --enable-vip && make clean && make all && yes | ./yaml2sql
+RUN ./configure --enable-packetver=${RATHENA_PACKETVER} --enable-vip && make clean && make all && yes Y | ./yaml2sql
 
 # ---- Runtime ----
-FROM alpine:3.22 as runtime
+FROM alpine:3.22 AS runtime
 WORKDIR /rathena
 
 RUN apk add --no-cache libgcc libstdc++ zlib mariadb-connector-c
