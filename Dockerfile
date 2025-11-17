@@ -17,7 +17,7 @@ COPY --from=git-clone /src/rathena /src/rathena
 
 WORKDIR /src/rathena
 COPY ./defines_pre.hpp /src/rathena/src/custom/defines_pre.hpp
-RUN ./configure --enable-epoll && make clean && make all && yes Y | ./yaml2sql
+RUN ./configure --enable-epoll && make clean && make all -j $(nproc) && yes Y | ./yaml2sql
 
 # ---- Runtime ----
 FROM alpine:3.22 AS runtime
