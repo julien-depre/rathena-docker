@@ -54,6 +54,7 @@ passwd: ${RATHENA_PWD:-p1}
 server_name: ${RATHENA_NAME:-rAthena}
 login_ip: login-server
 bind_ip: 0.0.0.0
+pincode_enabled: no
 EOF
 
 # Create web_conf.txt
