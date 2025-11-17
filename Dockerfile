@@ -9,8 +9,6 @@ RUN git clone --depth=1 --branch "${RATHENA_REF}" https://github.com/rathena/rat
 # ---- Build Stage ----
 FROM alpine:3.22 AS build
 
-ARG RATHENA_PACKETVER=
-
 RUN apk add --no-cache wget cmake make gcc g++ gdb zlib-dev mariadb-dev ca-certificates linux-headers bash valgrind netcat-openbsd
 
 COPY --from=git-clone /src/rathena /src/rathena
